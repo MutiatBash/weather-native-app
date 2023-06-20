@@ -1,121 +1,152 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View, Button, SafeAreaView } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Button,
+  SafeAreaView,
+  Image,
+  TouchableOpacity,
+} from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 
-export default function WeatherApp() {
+export default function WeatherApp({ navigation }) {
   return (
-    <SafeAreaView style={styles.safeview}>
-      <View style={styles.container}>
-        <LinearGradient
-          colors={["#3e9dbd", "#5696aa", "#30505b", "#0a2c37"]}
-          style={styles.container}
-        >
-          {/* <Text style={{ textAlign: "right" }}>🔍</Text> */}
-          {/* CURRENT WEATHER DISPLAY */}
-          <View style={styles.currentcontainer}>
-            <Text style={[styles.bodyText, styles.whiteText]}>
-              Today, May 7th 2021
-            </Text>
-            <Text style={[styles.headerText, styles.whiteText]}>Barcelona</Text>
-            <Text style={[styles.subHeadText, styles.whiteText]}>Spain</Text>
-          </View>
-          <View style={[styles.cloudContainer, styles.shadowProp]}>
-            <Text style={styles.cloudHeaderText}>🌧</Text>
-            <Text style={styles.cloudHeaderText}>10∘C</Text>
-          </View>
-          <View>
-            <View style={styles.detailsContainer}>
-              <View>
-                <Text style={[styles.subHeadText, styles.whiteText]}>
-                  Wind status
-                </Text>
-                <Text style={[styles.bodyText, styles.whiteText]}>7 mph</Text>
-              </View>
-              <View>
-                <Text style={[styles.subHeadText, styles.whiteText]}>
-                  Visibility
-                </Text>
-                <Text style={[styles.bodyText, styles.whiteText]}>
-                  6.4 miles
-                </Text>
-              </View>
+    <>
+      <SafeAreaView style={{ backgroundColor: "#3E9DB9", flex: 1 }}>
+        <View style={styles.container}>
+          <LinearGradient
+            colors={["#3e9dbd", "#5696aa", "#30505b", "#0a2c37"]}
+            style={styles.container}
+          >
+            <TouchableOpacity
+              onPress={() => navigation.navigate("Search")}
+              style={styles.search}
+            >
+              <Image
+                source={require("./assets/search-icon.png")}
+                style={styles.search}
+              />
+            </TouchableOpacity>
+
+            {/* CURRENT WEATHER DISPLAY */}
+            <View style={styles.currentcontainer}>
+              <Text style={[styles.bodyText, styles.whiteText]}>
+                Today, May 7th 2021
+              </Text>
+              <Text style={[styles.headerText, styles.whiteText]}>
+                Barcelona
+              </Text>
+              <Text style={[styles.subHeadText, styles.whiteText]}>Spain</Text>
             </View>
-            <View style={styles.detailsContainer}>
-              <View>
-                <Text style={[styles.subHeadText, styles.whiteText]}>
-                  Humidity
-                </Text>
-                <Text style={[styles.bodyText, styles.whiteText]}>85%</Text>
-              </View>
-              <View>
-                <Text style={[styles.subHeadText, styles.whiteText]}>
-                  Air pressure
-                </Text>
-                <Text style={[styles.bodyText, styles.whiteText]}>998 mb</Text>
-              </View>
+            <View style={[styles.cloudContainer, styles.shadowProp]}>
+              <Text style={styles.cloudHeaderText}>🌧</Text>
+              <Text style={styles.cloudHeaderText}>10∘C</Text>
             </View>
-          </View>
-          <View style={styles.daysContainer}>
-            <Text style={styles.nextDaysText}> The Next 5 days</Text>
-            <View style={styles.daysFlexContainer}>
-              <View style={styles.eachDayContainer}>
-                <Text style={styles.bodyText}>Sunday</Text>
-                <View style={styles.weatherContainer}>
-                  <Text style={styles.cloudText}>🌧</Text>
-                  <Text style={styles.bodyText}>10∘C</Text>
+            <View>
+              <View style={styles.detailsContainer}>
+                <View>
+                  <Text style={[styles.subHeadText, styles.whiteText]}>
+                    Wind status
+                  </Text>
+                  <Text style={[styles.bodyText, styles.whiteText]}>7 mph</Text>
+                </View>
+                <View>
+                  <Text style={[styles.subHeadText, styles.whiteText]}>
+                    Visibility
+                  </Text>
+                  <Text style={[styles.bodyText, styles.whiteText]}>
+                    6.4 miles
+                  </Text>
                 </View>
               </View>
-              <View style={styles.eachDayContainer}>
-                <Text style={styles.bodyText}>Monday</Text>
-                <View style={styles.weatherContainer}>
-                  <Text style={styles.cloudText}>🌦</Text>
-                  <Text style={styles.bodyText}>8∘C</Text>
+              <View style={styles.detailsContainer}>
+                <View>
+                  <Text style={[styles.subHeadText, styles.whiteText]}>
+                    Humidity
+                  </Text>
+                  <Text style={[styles.bodyText, styles.whiteText]}>85%</Text>
                 </View>
-              </View>
-              <View style={styles.eachDayContainer}>
-                <Text style={styles.bodyText}>Tuesday</Text>
-                <View style={styles.weatherContainer}>
-                  <Text style={styles.cloudText}>🌨</Text>
-                  <Text style={styles.bodyText}>3∘C</Text>
-                </View>
-              </View>
-              <View style={styles.eachDayContainer}>
-                <Text style={styles.bodyText}>Thursday</Text>
-                <View style={styles.weatherContainer}>
-                  <Text style={styles.cloudText}>🌩</Text>
-                  <Text style={styles.bodyText}>5∘C</Text>
-                </View>
-              </View>
-              <View style={styles.eachDayContainer}>
-                <Text style={styles.bodyText}>Friday</Text>
-                <View style={styles.weatherContainer}>
-                  <Text style={styles.cloudText}>☁</Text>
-                  <Text style={styles.bodyText}>9∘C</Text>
+                <View>
+                  <Text style={[styles.subHeadText, styles.whiteText]}>
+                    Air pressure
+                  </Text>
+                  <Text style={[styles.bodyText, styles.whiteText]}>
+                    998 mb
+                  </Text>
                 </View>
               </View>
             </View>
-          </View>
-          <StatusBar style="auto" />
-        </LinearGradient>
-      </View>
-    </SafeAreaView>
+            <View style={styles.daysContainer}>
+              <Text style={styles.nextDaysText}> The Next 5 days</Text>
+              <View style={styles.daysFlexContainer}>
+                <View style={styles.eachDayContainer}>
+                  <Text style={styles.bodyText}>Sunday</Text>
+                  <View style={styles.weatherContainer}>
+                    <Text style={styles.cloudText}>🌧</Text>
+                    <Text style={styles.bodyText}>10∘C</Text>
+                  </View>
+                </View>
+                <View style={styles.eachDayContainer}>
+                  <Text style={styles.bodyText}>Monday</Text>
+                  <View style={styles.weatherContainer}>
+                    <Text style={styles.cloudText}>🌦</Text>
+                    <Text style={styles.bodyText}>8∘C</Text>
+                  </View>
+                </View>
+                <View style={styles.eachDayContainer}>
+                  <Text style={styles.bodyText}>Tuesday</Text>
+                  <View style={styles.weatherContainer}>
+                    <Text style={styles.cloudText}>🌨</Text>
+                    <Text style={styles.bodyText}>3∘C</Text>
+                  </View>
+                </View>
+                <View style={styles.eachDayContainer}>
+                  <Text style={styles.bodyText}>Thursday</Text>
+                  <View style={styles.weatherContainer}>
+                    <Text style={styles.cloudText}>🌩</Text>
+                    <Text style={styles.bodyText}>5∘C</Text>
+                  </View>
+                </View>
+                <View style={styles.eachDayContainer}>
+                  <Text style={styles.bodyText}>Friday</Text>
+                  <View style={styles.weatherContainer}>
+                    <Text style={styles.cloudText}>☁</Text>
+                    <Text style={styles.bodyText}>9∘C</Text>
+                  </View>
+                </View>
+              </View>
+            </View>
+            <StatusBar style="auto" />
+          </LinearGradient>
+        </View>
+      </SafeAreaView>
+      <SafeAreaView style={{ backgroundColor: "#fff", flex: 0 }}></SafeAreaView>
+    </>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     // flex: 1,
-    paddingTop: 10,
+    // paddingTop: ,
     // backgroundColor: "#3E9DB9",
     alignItems: "center",
-    // height: "100vh",
+    height: "100%",
   },
   safeview: {
     // flex: 1,
     paddingTop: 10,
     backgroundColor: "#3E9DB9",
     alignItems: "center",
+    height: "100%",
     // height: "100vh",
+  },
+  search: {
+    alignSelf: "flex-end",
+    width: 50,
+    height: 50,
+    paddingRight: 15,
   },
   cloudContainer: {
     flexDirection: "column",
@@ -128,13 +159,12 @@ const styles = StyleSheet.create({
     paddingTop: 10,
     paddingBottom: 35,
     marginBottom: 20,
-    // width: 100,
   },
   currentcontainer: {
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "space-around",
-    paddingTop: 40,
+    paddingTop: 10,
     paddingBottom: 20,
   },
   whiteText: {
@@ -156,9 +186,10 @@ const styles = StyleSheet.create({
     border: "none",
     borderTopRightRadius: 55,
     borderTopLeftRadius: 55,
-    paddingTop: 60,
+    paddingTop: 55,
     paddingBottom: 50,
-    marginTop: 25,
+    marginTop: 20,
+    height: "50%",
   },
   weatherContainer: {
     alignItems: "center",
@@ -180,11 +211,11 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-around",
-    paddingTop: 12,
+    paddingTop: 10,
     paddingBottom: 10,
-    width: 400,
-    gap: 20,
-    // flex: 1,
+    width: "94%",
+    gap: 30,
+    paddingLeft: 25,
   },
   headerText: {
     fontSize: 40,
